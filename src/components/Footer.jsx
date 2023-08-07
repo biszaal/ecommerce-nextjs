@@ -1,4 +1,11 @@
 import React from "react";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import EmailIcon from "@mui/icons-material/Email";
+import PhoneIcon from "@mui/icons-material/Phone";
 
 const Footer = () => {
   return (
@@ -27,22 +34,22 @@ const Footer = () => {
             <ul className="list-inline">
               <li className="list-inline-item">
                 <a href="#">
-                  <i className="fab fa-facebook"></i>
+                  <FacebookIcon />
                 </a>
               </li>
               <li className="list-inline-item">
                 <a href="#">
-                  <i className="fab fa-twitter"></i>
+                  <TwitterIcon />
                 </a>
               </li>
               <li className="list-inline-item">
                 <a href="#">
-                  <i className="fab fa-instagram"></i>
+                  <InstagramIcon />
                 </a>
               </li>
               <li className="list-inline-item">
                 <a href="#">
-                  <i className="fab fa-linkedin"></i>
+                  <LinkedInIcon />
                 </a>
               </li>
             </ul>
@@ -51,14 +58,13 @@ const Footer = () => {
             <h5>Contact Info</h5>
             <ul className="list-unstyled">
               <li>
-                <i className="material-icons">location_on</i> 123 Street, City,
-                Country
+                <LocationOnIcon htmlColor="#FF6D70" /> 123 Street, City, Country
               </li>
               <li>
-                <i className="material-icons">email</i> info@example.com
+                <EmailIcon htmlColor="#FF6D70" /> info@example.com
               </li>
               <li>
-                <i className="material-icons">phone</i> +1234567890
+                <PhoneIcon htmlColor="#FF6D70" /> +1234567890
               </li>
             </ul>
           </div>

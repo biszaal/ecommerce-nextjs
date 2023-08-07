@@ -1,6 +1,8 @@
 import React from "react";
 import Navbar from "../src/components/Navbar";
 import Footer from "../src/components/Footer";
+import PhoneIcon from "@mui/icons-material/Phone";
+import PlaceIcon from "@mui/icons-material/Place";
 
 export default function Contact() {
   return (
@@ -28,11 +30,10 @@ export default function Contact() {
               <div className="col-md-6">
                 <h2>Contact Information</h2>
                 <p>
-                  <i className="fas fa-phone"></i> Phone: +1 123 456 7890
+                  <PhoneIcon /> Phone: +1 123 456 7890
                 </p>
                 <p>
-                  <i className="fas fa-map-marker-alt"></i> Address: 123 Street,
-                  City, Country
+                  <PlaceIcon /> Address: 123 Street, City, Country
                 </p>
               </div>
             </div>

@@ -1,4 +1,6 @@
 import React from "react";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 const Pagination = ({
   totalProducts,
   productsPerPage,
@@ -26,7 +28,7 @@ const Pagination = ({
               handlePageChange(currentPage - 1);
             }}
           >
-            <span className="material-icons">chevron_left</span>
+            <ChevronLeftIcon />
           </a>
         </li>
         {[...Array(pageCount)].map((_, i) => (
@@ -57,7 +59,7 @@ const Pagination = ({
               handlePageChange(currentPage + 1);
             }}
           >
-            <span className="material-icons">chevron_right</span>
+            <ChevronRightIcon />
           </a>
         </li>
       </ul>

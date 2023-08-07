@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { useUser } from "../contexts/UserContext";
 import { Navbar } from "react-bootstrap";
 
+import SearchIcon from "@mui/icons-material/Search";
+
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -46,7 +48,7 @@ export default function NavBar() {
                 className="btn align-content-center bg-white"
                 type="submit"
               >
-                <span className="material-icons fw-bold"> search </span>
+                <SearchIcon htmlColor="#FF6D70" />
               </button>
             </div>
           </form>

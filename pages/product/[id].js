@@ -8,6 +8,9 @@ import Navbar from "../../src/components/Navbar";
 import Footer from "../../src/components/Footer";
 import productsData from "../../src/data/products.json";
 
+import StarIcon from "@mui/icons-material/Star";
+import StarHalfIcon from "@mui/icons-material/StarHalf";
+
 function ProductDetails() {
   const router = useRouter();
   const { user } = useUser();
@@ -102,14 +105,14 @@ function ProductDetails() {
                 <p className="price">${product.price}</p>
                 <p className="description">{product.description}</p>
                 <p class="stock">Total Stock: 100</p>
-                <p class="rating">
+                <p className="rating">
                   Rating:
-                  <span class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
+                  <span className="stars">
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                    <StarHalfIcon />
                   </span>
                 </p>
               </div>

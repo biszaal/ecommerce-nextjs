@@ -9,6 +9,8 @@ import Image from "next/image";
 import { useUser } from "../src/contexts/UserContext";
 import Link from "next/link";
 
+import DeleteIcon from "@mui/icons-material/Delete";
+
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const { user } = useUser();
@@ -154,7 +156,7 @@ function Cart() {
                         className="btn btn-remove"
                         onClick={() => removeFromCart(item.cartID)}
                       >
-                        <span className="material-icons"> delete_outline </span>
+                        <DeleteIcon htmlColor="#FF6D70" />
                       </button>
                     </div>
                   </div>
