@@ -9,6 +9,8 @@ export const UserProvider = ({ children }) => {
     return JSON.parse(Cookies.get("user") || null);
   });
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     if (user) {
       Cookies.set("user", JSON.stringify(user));
@@ -18,6 +20,7 @@ export const UserProvider = ({ children }) => {
   }, [user]);
 
   const loginUser = async (email, password) => {
+    setLoading(true);
     try {
       const response = await axios
         .get("/api/auth", {
@@ -43,10 +46,13 @@ export const UserProvider = ({ children }) => {
         success: false,
         error: error.response?.data?.message || "Error logging in.",
       };
+    } finally {
+      setLoading(false);
     }
   };
 
   const registerUser = async (name, email, password) => {
+    setLoading(true);
     try {
       const response = await axios.post("/api/auth", {
         name,
@@ -69,6 +75,8 @@ export const UserProvider = ({ children }) => {
         success: false,
         error: error.response?.data?.message || "Error registering.",
       };
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -79,7 +87,9 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, loginUser, registerUser, logoutUser }}>
+    <UserContext.Provider
+      value={{ user, loading, loginUser, registerUser, logoutUser }}
+    >
       {children}
     </UserContext.Provider>
   );
