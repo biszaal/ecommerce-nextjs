@@ -7,6 +7,7 @@ import axios from "axios";
 import Image from "next/image";
 
 import { useUser } from "@/contexts/UserContext";
+import Link from "next/link";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -111,8 +112,8 @@ function Cart() {
                 shopping_cart
               </span>
               <p>
-                Your cart is empty. <a href="/home">Shop now</a> to add items to
-                your cart.
+                Your cart is empty. <Link href="/home">Shop now</Link> to add
+                items to your cart.
               </p>
             </div>
           ) : (
