@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import productsData from "@/data/products.json";
-import paymentMethods from "@/data/paymentMethods.json";
+import Navbar from "../src/components/Navbar";
+import Footer from "../src/components/Footer";
+import productsData from "../src/data/products.json";
+import paymentMethods from "../src/data/paymentMethods.json";
 import axios from "axios";
 import Image from "next/image";
 
-import { useUser } from "@/contexts/UserContext";
+import { useUser } from "../src/contexts/UserContext";
 import Link from "next/link";
 
 function Cart() {

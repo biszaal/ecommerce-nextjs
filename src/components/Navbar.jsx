@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { useUser } from "@/contexts/UserContext";
+import { useUser } from "../contexts/UserContext";
 import { Navbar } from "react-bootstrap";
 
 export default function NavBar() {

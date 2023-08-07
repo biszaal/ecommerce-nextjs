@@ -1,8 +1,8 @@
 import React from "react";
-import NavBar from "@/components/NavBar";
-import CustomCarousel from "@/components/CustomCarousel";
-import Product from "@/components/Product";
-import Footer from "@/components/Footer";
+import NavBar from "../src/components/NavBar";
+import CustomCarousel from "../src/components/CustomCarousel";
+import Product from "../src/components/Product";
+import Footer from "../src/components/Footer";
 
 import productsData from "@/data/products.json";
 

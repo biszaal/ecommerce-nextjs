@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useUser } from "@/contexts/UserContext";
+import { useUser } from "../contexts/UserContext";
 
 const LoginForm = ({ handleFormToggle }) => {
   const [email, setEmail] = useState("");

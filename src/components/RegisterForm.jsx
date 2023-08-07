@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { useUser } from "@/contexts/UserContext";
+import { useUser } from "../contexts/UserContext";
 
 const RegisterForm = ({ handleFormToggle }) => {
   const [name, setName] = useState("");

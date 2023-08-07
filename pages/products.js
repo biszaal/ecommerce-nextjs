@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import productsData from "@/data/products.json";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Filter from "@/components/Filter";
-import ProductList from "@/components/ProductList";
-import Pagination from "@/components/Pagination";
+import productsData from "../src/data/products.json";
+import Navbar from "../src/components/Navbar";
+import Footer from "../src/components/Footer";
+import Filter from "../src/components/Filter";
+import ProductList from "../src/components/ProductList";
+import Pagination from "../src/components/Pagination";
 import { useRouter } from "next/router";
 
 const Products = () => {

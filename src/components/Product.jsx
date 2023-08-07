@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { use } from "react";
-import { useUser } from "@/contexts/UserContext";
+import { useUser } from "../contexts/UserContext";
 import { useRouter } from "next/router";
 
 const Product = ({ product }) => {

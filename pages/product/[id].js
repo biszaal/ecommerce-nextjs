@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useUser } from "@/contexts/UserContext";
+import { useUser } from "../../src/contexts/UserContext";
 import { useRouter } from "next/router";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import productsData from "@/data/products.json";
+import Navbar from "../../src/components/Navbar";
+import Footer from "../../src/components/Footer";
+import productsData from "../../src/data/products.json";
 
 function ProductDetails() {
   const router = useRouter();

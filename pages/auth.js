@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-import { useUser } from "@/contexts/UserContext";
+import { useUser } from "../src/contexts/UserContext";
 import { useRouter } from "next/router";
 
-import Footer from "@/components/Footer";
-import NavBar from "@/components/Navbar";
-import LoginForm from "@/components/LoginForm";
-import RegisterForm from "@/components/RegisterForm";
+import Footer from "../src/components/Footer";
+import NavBar from "../src/components/Navbar";
+import LoginForm from "../src/components/LoginForm";
+import RegisterForm from "../src/components/RegisterForm";
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);

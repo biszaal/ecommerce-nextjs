@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import NavBar from "../src/components/Navbar";
+import Footer from "../src/components/Footer";
 import Image from "next/image";
 export default function About() {
   return (
