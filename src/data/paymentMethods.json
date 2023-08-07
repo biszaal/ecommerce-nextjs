@@ -1,0 +1,22 @@
+[
+  {
+    "id": "cash",
+    "name": "Cash on Delivery",
+    "icon": "/img/logo/cash-icon.png"
+  },
+  {
+    "id": "credit-card",
+    "name": "Credit Card",
+    "icon": "/img/logo/creditcard-icon.png"
+  },
+  {
+    "id": "paypal",
+    "name": "PayPal",
+    "icon": "/img/logo/paypal-icon.png"
+  },
+  {
+    "id": "apple-pay",
+    "name": "Apple Pay",
+    "icon": "/img/logo/applypay-icon.png"
+  }
+]
