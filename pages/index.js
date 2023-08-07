@@ -8,7 +8,7 @@ export default function Index() {
     setTimeout(() => {
       router.push("/home");
     }, 1000);
-  }, []);
+  });
 
   return (
     <div className="loading">

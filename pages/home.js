@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../src/components/NavBar";
+import NavBar from "../src/components/Navbar";
 import CustomCarousel from "../src/components/CustomCarousel";
 import Product from "../src/components/Product";
 import Footer from "../src/components/Footer";
