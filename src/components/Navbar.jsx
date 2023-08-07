@@ -90,9 +90,9 @@ export default function NavBar() {
             </li>
             <li className="nav-item">
               {user ? (
-                <span className="nav-link" onClick={handleLogout}>
+                <Link href="/auth" className="nav-link" onClick={handleLogout}>
                   Logout
-                </span>
+                </Link>
               ) : (
                 <Link href="/auth" className="nav-link">
                   Login

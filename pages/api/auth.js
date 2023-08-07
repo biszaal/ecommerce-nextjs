@@ -8,15 +8,13 @@ export default async function handler(req, res) {
   } else if (req.method === "POST") {
     await handlePostRequest(req, res);
   } else {
-    res.status(405).end(); // Method Not Allowed
+    res.status(405).end();
   }
 }
 
 async function handleGetRequest(req, res) {
   try {
     const { email, password } = req.query;
-
-    console.log("USER IS", email);
 
     const { db } = await connectToDatabase();
     const collection = db.collection("users");
@@ -37,7 +35,7 @@ async function handleGetRequest(req, res) {
       status: "success",
       data: {
         token,
-        user: { id: user._id, email: user.email },
+        user: { id: user._id, name: user.name, email: user.email },
       },
     });
   } catch (error) {
@@ -50,9 +48,9 @@ async function handleGetRequest(req, res) {
 
 async function handlePostRequest(req, res) {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
 
-    const db = await connectToDatabase();
+    const { db } = await connectToDatabase();
     const collection = db.collection("users");
 
     const existingUser = await collection.findOne({ email });
@@ -65,17 +63,17 @@ async function handlePostRequest(req, res) {
 
     const hashedPassword = bcrypt.hashSync(password, 10);
     const result = await collection.insertOne({
+      name,
       email,
       password: hashedPassword,
     });
 
-    if (!result || !result.ops || result.ops.length === 0) {
+    if (!result.acknowledged) {
       throw new Error("Failed to create user.");
     }
 
-    const user = result.ops[0];
-
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const userId = result.insertedId;
+    const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
 
@@ -83,7 +81,7 @@ async function handlePostRequest(req, res) {
       status: "success",
       data: {
         token,
-        user: { id: user._id, email: user.email },
+        user: { id: userId, email },
       },
     });
   } catch (error) {

@@ -53,8 +53,17 @@ export const UserProvider = ({ children }) => {
         email,
         password,
       });
-      setUser(response.data.user);
-      return { success: true };
+
+      if (response.data.status === "success") {
+        const loginResponse = await loginUser(email, password);
+        if (loginResponse.success) {
+          return { success: true };
+        } else {
+          throw new Error(loginResponse.error);
+        }
+      } else {
+        throw new Error(response.data.message || "Registration failed");
+      }
     } catch (error) {
       return {
         success: false,
