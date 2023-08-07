@@ -6,6 +6,7 @@ import { useUser } from "../contexts/UserContext";
 import { Navbar } from "react-bootstrap";
 
 import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,7 +63,7 @@ export default function NavBar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="material-icons fw-bold">menu</span>
+          <MenuIcon htmlColor="#FF6D70" />
         </button>
 
         <Navbar.Collapse id="responsive-navbar-nav" in={isOpen}>
