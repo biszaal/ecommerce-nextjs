@@ -4,7 +4,7 @@ import CustomCarousel from "../src/components/CustomCarousel";
 import Product from "../src/components/Product";
 import Footer from "../src/components/Footer";
 
-import productsData from "@/data/products.json";
+import productsData from "../src/data/products.json";
 
 const banners = [
   { image: "/img/banner/banner-1.jpg" },
