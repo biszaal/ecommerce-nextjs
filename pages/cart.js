@@ -10,6 +10,7 @@ import { useUser } from "../src/contexts/UserContext";
 import Link from "next/link";
 
 import DeleteIcon from "@mui/icons-material/Delete";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -107,12 +108,10 @@ function Cart() {
         <div className="container">
           {cartItems.length === 0 ? (
             <div className="empty-cart-message">
-              <span
-                className="material-icons"
-                style={{ fontSize: "50px", color: "#aaa" }}
-              >
-                shopping_cart
-              </span>
+              <ShoppingBagIcon
+                style={{ fontSize: "50px" }}
+                htmlColor="#FF6D70"
+              />
               <p>
                 Your cart is empty. <Link href="/home">Shop now</Link> to add
                 items to your cart.
