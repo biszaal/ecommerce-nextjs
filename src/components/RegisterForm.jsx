@@ -9,17 +9,44 @@ const RegisterForm = ({ handleFormToggle }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { registerUser } = useUser();
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    let formErrors = {};
+
+    // Name validation
+    if (!name) {
+      formErrors.name = "Please enter your full name";
+    } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+      formErrors.name = "Please enter a valid name";
+    }
+
+    // Email validation
+    if (!email) {
+      formErrors.email = "Please enter your email";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      formErrors.email = "Please enter a valid email";
+    }
+
+    // Password validation
+    if (!password) {
+      formErrors.password = "Please enter your password";
+    } else if (password.length < 8) {
+      formErrors.password = "Password should be at least 8 characters long.";
+    }
+
+    if (password !== confirmPassword) {
+      formErrors.confirmPassword = "Passwords do not match.";
+    }
+
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0;
+  };
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match.");
-      return;
-    }
-
-    if (password.length < 8) {
-      setErrorMessage("Password should be at least 8 characters long.");
+    if (!validateForm()) {
       return;
     }
 
@@ -38,6 +65,7 @@ const RegisterForm = ({ handleFormToggle }) => {
             {errorMessage}
           </p>
         )}
+
         <div className="form-group">
           <label htmlFor="register-name">Full Name</label>
           <input
@@ -48,7 +76,9 @@ const RegisterForm = ({ handleFormToggle }) => {
             className="form-control"
             placeholder="Enter your full name"
           />
+          {errors.name && <p className="text-danger">{errors.name}</p>}
         </div>
+
         <div className="form-group">
           <label htmlFor="register-email">Email</label>
           <input
@@ -59,7 +89,9 @@ const RegisterForm = ({ handleFormToggle }) => {
             className="form-control"
             placeholder="Enter your email"
           />
+          {errors.email && <p className="text-danger">{errors.email}</p>}
         </div>
+
         <div className="form-group">
           <label htmlFor="register-password">Password</label>
           <input
@@ -70,7 +102,9 @@ const RegisterForm = ({ handleFormToggle }) => {
             className="form-control"
             placeholder="Enter your password"
           />
+          {errors.password && <p className="text-danger">{errors.password}</p>}
         </div>
+
         <div className="form-group">
           <label htmlFor="confirm-register-password">Confirm Password</label>
           <input
@@ -81,7 +115,11 @@ const RegisterForm = ({ handleFormToggle }) => {
             className="form-control"
             placeholder="Re-enter your password"
           />
+          {errors.confirmPassword && (
+            <p className="text-danger">{errors.confirmPassword}</p>
+          )}
         </div>
+
         <div className="form-group">
           <button type="submit" className="btn btn-primary">
             Register

@@ -24,6 +24,7 @@
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.1",
     "mongodb": "^5.7.0",
+    "multer": "^1.4.5-lts.1",
     "next": "13.4.12",
     "next-connect": "^1.0.0",
     "postcss": "8.4.27",

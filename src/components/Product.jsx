@@ -1,11 +1,13 @@
 import Image from "next/image";
-import React, { use } from "react";
+import React from "react";
 import { useUser } from "../contexts/UserContext";
 import { useRouter } from "next/router";
 
 const Product = ({ product }) => {
   const { user } = useUser();
   const router = useRouter();
+
+  console.log(product.imageUrls);
 
   const handleAddToCart = async () => {
     if (!user) {
@@ -22,7 +24,7 @@ const Product = ({ product }) => {
         },
         body: JSON.stringify({
           userId: user.id,
-          productId: product.id,
+          productId: product._id,
         }),
       });
 
@@ -40,7 +42,7 @@ const Product = ({ product }) => {
     <div className="col-md-6 col-lg-4 mt-5">
       <div className="product">
         <a
-          href={`/product/${product.id}`}
+          href={`/product/${product._id}`}
           className="text-decoration-none text-black"
         >
           <Image

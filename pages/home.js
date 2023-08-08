@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../src/components/Navbar";
 import CustomCarousel from "../src/components/CustomCarousel";
 import Product from "../src/components/Product";
 import Footer from "../src/components/Footer";
-
-import productsData from "../src/data/products.json";
 
 const banners = [
   { image: "/img/banner/banner-1.jpg" },
@@ -14,7 +12,26 @@ const banners = [
   { image: "/img/banner/banner-5.jpg" },
 ];
 
-export default function Home() {
+function Home() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await fetch("/api/products");
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("There was an error fetching the products", error);
+      }
+    }
+
+    fetchProducts();
+  }, []);
+
   return (
     <div>
       <NavBar />
@@ -23,8 +40,8 @@ export default function Home() {
       <div className="container products-container-home">
         <h2>Popular Products</h2>
         <div className="row">
-          {productsData.map((product) => (
-            <Product product={product} key={product.id} />
+          {products.map((product) => (
+            <Product product={product} key={product._id} />
           ))}
         </div>
       </div>
@@ -33,3 +50,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;

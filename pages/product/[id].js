@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 
 import { useUser } from "../../src/contexts/UserContext";
 import { useRouter } from "next/router";
 import Navbar from "../../src/components/Navbar";
 import Footer from "../../src/components/Footer";
-import productsData from "../../src/data/products.json";
 
 import StarIcon from "@mui/icons-material/Star";
 import StarHalfIcon from "@mui/icons-material/StarHalf";
@@ -16,18 +16,55 @@ function ProductDetails() {
   const { user } = useUser();
   const { id } = router.query;
   const [quantity, setQuantity] = useState(1);
+  const [product, setProduct] = useState(null);
 
-  const product = productsData.find((product) => product.id.toString() === id);
+  const [mainImage, setMainImage] = useState();
 
-  const [mainImage, setMainImage] = useState(product ? product.images[0] : "");
-
-  const recommendedProducts = product
-    ? productsData.filter((p) => p.id !== product.id).slice(0, 3)
-    : null;
+  const [recommendedProducts, setRecommendedProducts] = useState([]);
 
   useEffect(() => {
-    setMainImage(product && product.images[0]);
-  }, [product]);
+    async function fetchProductDetails() {
+      if (!id) return;
+
+      try {
+        const response = await axios.get(`/api/products?id=${id}`);
+
+        if (response.status === 200) {
+          setProduct(response.data);
+          setMainImage(response.data.images[0]); // Set the main image here directly
+        } else {
+          console.error("Failed to fetch product details");
+        }
+      } catch (error) {
+        console.error("There was an error fetching the product details", error);
+      }
+    }
+
+    async function fetchRecommendedProducts() {
+      try {
+        const allProductsResponse = await axios.get(`/api/products`);
+        if (allProductsResponse.status === 200) {
+          const otherProducts = allProductsResponse.data.filter(
+            (prod) => prod.id !== id
+          );
+          const randomRecommended = otherProducts
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 3);
+          setRecommendedProducts(randomRecommended);
+        } else {
+          console.error("Failed to fetch recommended products");
+        }
+      } catch (error) {
+        console.error(
+          "There was an error fetching the recommended products",
+          error
+        );
+      }
+    }
+
+    fetchProductDetails();
+    fetchRecommendedProducts();
+  }, [id]);
 
   const handleMouseEnter = (imageUrl) => {
     setMainImage(imageUrl);
@@ -48,7 +85,7 @@ function ProductDetails() {
         },
         body: JSON.stringify({
           userId: user.id,
-          productId: product.id,
+          productId: product._id,
           quantity,
         }),
       });

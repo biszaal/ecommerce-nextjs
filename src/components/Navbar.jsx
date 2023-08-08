@@ -21,6 +21,7 @@ export default function NavBar() {
   const handleLogout = (e) => {
     e.preventDefault();
     logoutUser();
+    router.push("/home");
   };
 
   const handleSearch = (e) => {
@@ -79,11 +80,6 @@ export default function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/contact" className="nav-link">
-                Contact
-              </Link>
-            </li>
-            <li className="nav-item">
               <Link href="/cart" className="nav-link">
                 Cart
               </Link>
@@ -99,6 +95,12 @@ export default function NavBar() {
                 </Link>
               )}
             </li>
+            {user && (
+            <li className="nav-item">
+              <Link href="/productUpload" className="nav-link">
+                Sell
+              </Link>
+            </li>)}
           </ul>
         </Navbar.Collapse>
       </div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import productsData from "../src/data/products.json";
 import Navbar from "../src/components/Navbar";
 import Footer from "../src/components/Footer";
 import Filter from "../src/components/Filter";
@@ -9,10 +8,28 @@ import { useRouter } from "next/router";
 
 const Products = () => {
   const router = useRouter();
-  const [products, setProducts] = useState(productsData);
-  const [filteredProducts, setFilteredProducts] = useState(productsData);
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 6;
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await fetch("/api/products");
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data = await response.json();
+        setProducts(data);
+        setFilteredProducts(data);
+      } catch (error) {
+        console.error("There was an error fetching the products", error);
+      }
+    }
+
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     setCurrentPage(1);

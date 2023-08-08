@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../src/components/Navbar";
 import Footer from "../src/components/Footer";
-import productsData from "../src/data/products.json";
 import paymentMethods from "../src/data/paymentMethods.json";
 import axios from "axios";
 import Image from "next/image";
@@ -15,6 +14,7 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
   const { user } = useUser();
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     async function fetchCartItems() {
@@ -31,8 +31,24 @@ function Cart() {
     fetchCartItems();
   }, [user]);
 
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const res = await axios.get("/api/products");
+        setProducts(res.data);
+      } catch (error) {
+        console.error("Error fetching products:", error.message);
+      }
+    }
+
+    fetchProducts();
+  }, []);
+
   const getProductDetails = (cartID) => {
-    return productsData.find((product) => product.id === cartID) || null;
+    console.log(cartID);
+    return (
+      products.find((product) => String(product._id) === String(cartID)) || null
+    );
   };
 
   const totalPrice = cartItems.reduce((sum, item) => {
